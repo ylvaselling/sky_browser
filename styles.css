@@ -1,0 +1,25 @@
+body {
+  background-color: black;
+
+}
+h1 {
+  color: white;
+  font-family: verdana;
+  font-size: 300%;
+    text-align: center;
+}
+iframe {
+    margin: 0 auto;
+    background-color: #777;
+    display: block;
+}
+#input-div {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: verdana;
+}
+button {
+  align-self: center;
+  margin: 50px;
+}
