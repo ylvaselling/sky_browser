@@ -1,4 +1,4 @@
-import { CenterOnCoordinatesMessage } from "WWT/node_modules/@wwtelescope/research-app-messages/dist/classic_pywwt"
+import { CenterOnCoordinatesMessage } from "../../WWT/node_modules/@wwtelescope/research-app-messages/dist/classic_pywwt"
 
 function setupOrigin() {
   let frame = document.getElementsByTagName("iframe")[0].contentWindow;
@@ -21,3 +21,7 @@ function changeCoords() {
   frame.postMessage(message,"http://localhost:7800");
   console.log(message);
 }
+
+window.addEventListener('message', (event) => {
+    alert('Received message');
+});
