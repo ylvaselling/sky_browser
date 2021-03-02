@@ -1,10 +1,10 @@
-import { CenterOnCoordinatesMessage } from "../../WWT/node_modules/@wwtelescope/research-app-messages/dist/classic_pywwt"
+import { CenterOnCoordinatesMessage } from "node_modules/@wwtelescope/research-app-messages/dist/classic_pywwt"
 
 function setupOrigin() {
   let frame = document.getElementsByTagName("iframe")[0].contentWindow;
   console.log(frame);
   //wwt.contentWindow.frames.wwt.origin = "https://web.wwtassets.org/";
-  frame.postMessage("Hello World!", "http://localhost:7800") ;
+  frame.postMessage("Hello World!", "http://localhost:8000") ;
 }
 
 function changeCoords() {
@@ -18,5 +18,5 @@ function changeCoords() {
     instant: false,
   };
 
-  frame.postMessage(message,"http://localhost:7800");
+  frame.postMessage(message,"http://localhost:8000");
 }
