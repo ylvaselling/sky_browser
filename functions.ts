@@ -19,9 +19,4 @@ function changeCoords() {
   };
 
   frame.postMessage(message,"http://localhost:7800");
-  console.log(message);
 }
-
-window.addEventListener('message', (event) => {
-    alert('Received message');
-});
