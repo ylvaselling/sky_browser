@@ -1,4 +1,4 @@
-import { CenterOnCoordinatesMessage } from "node_modules/@wwtelescope/research-app-messages/dist/classic_pywwt"
+import { CenterOnCoordinatesMessage } from "./node_modules/@wwtelescope/research-app-messages/dist/classic_pywwt"
 
 function setupOrigin() {
   let frame = document.getElementsByTagName("iframe")[0].contentWindow;
@@ -7,16 +7,8 @@ function setupOrigin() {
   frame.postMessage("Hello World!", "http://localhost:8000") ;
 }
 
-function changeCoords() {
+function sendMessageToWWT(message) {
   //setupOrigin();
   let frame = document.getElementsByTagName("iframe")[0].contentWindow;
-  const message : CenterOnCoordinatesMessage = {
-    event: "center_on_coordinates",
-    ra: Number((<HTMLInputElement>document.getElementById('ra')).value) ,
-    dec: Number((<HTMLInputElement>document.getElementById('dec')).value),
-    fov: Number((<HTMLInputElement>document.getElementById('fov')).value),
-    instant: false,
-  };
-
   frame.postMessage(message,"http://localhost:8000");
 }
