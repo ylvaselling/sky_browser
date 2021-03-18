@@ -1,16 +1,10 @@
 body {
-   margin: 0;
-   overflow: hidden;
-   background-color: lightgray;
+  margin: 0;
+  overflow:hidden;
 }
 #wwtResearch {
-    position:absolute;
-    left: 0px;
-    width: 98vw;
-    top: 0px;
-    height: 98vh;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    border: solid lightgray 5px;
 }
