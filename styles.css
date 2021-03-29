@@ -1,10 +1,13 @@
 body {
   margin: 0;
   overflow:hidden;
+  background-color: lightgray;
 }
 #wwtResearch {
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    border: solid lightgray 5px;
+
+    border-width: 5px;
+    border-color: transparent;
 }
