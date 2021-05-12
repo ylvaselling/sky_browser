@@ -13,12 +13,12 @@ Currently the project is dependent on an OpenSpace patch that has not yet been m
 
 3. Start OpenSpace with the SkyBrowser module. Note that you need to import assets for the browser and the target.
 
-##### No images show up or OpenSpace crashes?
+#### GUI crashes?
+There's a lot of data processing happening upon startup. Try to be patient and wait a little bit. :-) If the GUI crashes, reload it and wait a minute or two.
 
-If no images show up at all (or if the GUI component of the skybrowser module makes OpenSpace crash), the problem might be that you need to download the image data files from the web. This only needs to be done once - when the files are on disc, loading the images from disc is much faster. To download the image data frmo the web, do this:
-In the `skybrowsermodule_lua.inl` file, find the function `int getListOfImages(lua_State* L)`. Find the call to `module->loadImages(root, SkyBrowserModule::FROM_DIRECTORY);`. Change `FROM_DIRECTORY` to `FROM_URL`. This will make the WorldWide Telescope data be downloaded to disc.
+#### No images show up?
+Try removing the WWTimagedata folder, if there is one in the skybrowser module. If there exists a folder with that name, but it's empty, it won't download any new WWT files.
 
-This is the quick fix for now but a better fix will be done in the future :-)
 
 #### Deprecated instructions
 This web page is dependent on World Wide Telescope packages @wwtelescope/research-app-messages/dist/classic_pywwt and @wwtelescope/research-app. These are node_modules that need to be downloaded.
