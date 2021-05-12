@@ -7,9 +7,9 @@ Currently the project is dependent on an OpenSpace patch that has not yet been m
 
 ### Set up instructions
 
-1. Download [this repo](https://github.com/imbasimba/wwt-webgl-engine/tree/open-space) and follow the instructions. Make sure you download the `open-space` branch. The `wwtlib.js` file is pushed to this project and should be copied and pasted as stated in the instructions. Serve the research application with the command described in the repository ReadMe (serve it on default port - should be `8080`).
+1. Download [this repo](https://github.com/imbasimba/wwt-webgl-engine/tree/open-space) and follow the instructions. Make sure you download the `open-space` branch. The `wwtlib.js` file can be found in this `sky_browser` repository and should be copied and pasted as stated in the instructions. Run the research application with the command described in the repository ReadMe (serve it on default port - should be `8080`).
 
-2. Download this repo. The first time using this project, the typescript file needs to be compiled into javascript. [Here](https://code.visualstudio.com/docs/typescript/typescript-compiling) you can see instructions for doing that on Windows. Then, serve it on `localhost:8000`.
+2. Download this repo. The first time using this project, the typescript file needs to be compiled into javascript. [Here](https://code.visualstudio.com/docs/typescript/typescript-compiling) you can see instructions for doing that on Windows. Then, run it on `localhost:8000`.
 
 3. Start OpenSpace with the SkyBrowser module. Note that you need to import assets for the browser and the target.
 
