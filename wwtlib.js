@@ -15735,18 +15735,22 @@ define('wwtlib', ['ss'], function(ss) {
   };
   LayerManager._getNextName = function(type) {
     var currentNumber = 0;
-    var $enum1 = ss.enumerate(LayerManager.get_allMaps()['Sky'].layers);
+    var $enum1 = ss.enumerate(ss.keys(LayerManager.get_allMaps()));
     while ($enum1.moveNext()) {
-      var layer = $enum1.current;
-      if (ss.startsWith(layer.get_name(), type + ' ')) {
-        var number = ss.replaceString(layer.get_name(), type + ' ', '');
-        try {
-          var num = parseInt(number);
-          if (num > currentNumber) {
-            currentNumber = num;
+      var key = $enum1.current;
+      var $enum2 = ss.enumerate(LayerManager.get_allMaps()[key].layers);
+      while ($enum2.moveNext()) {
+        var layer = $enum2.current;
+        if (ss.startsWith(layer.get_name(), type + ' ')) {
+          var number = ss.replaceString(layer.get_name(), type + ' ', '');
+          try {
+            var num = parseInt(number);
+            if (num > currentNumber) {
+              currentNumber = num;
+            }
           }
-        }
-        catch ($e2) {
+          catch ($e3) {
+          }
         }
       }
     }
@@ -23232,7 +23236,7 @@ define('wwtlib', ['ss'], function(ss) {
         }
         var imagesetLayer = LayerManager.addImageSetLayer(imageset, name);
         if (gotoTarget) {
-          WWTControl.singleton.gotoRADecZoom(imageset.get_centerX() / 15, imageset.get_centerY(), WWTControl.singleton.renderContext.viewCamera.zoom, false, WWTControl.singleton.renderContext.viewCamera.rotation);
+          WWTControl.singleton.gotoRADecZoom(imageset.get_centerX() / 15, imageset.get_centerY(), WWTControl.singleton.renderContext.viewCamera.zoom, false, null);
         }
         if (loaded != null) {
           loaded(imagesetLayer);
@@ -23253,7 +23257,7 @@ define('wwtlib', ['ss'], function(ss) {
           LayerManager.addFitsImageSetLayer(imagesetLayer, name);
           LayerManager.loadTree();
           if (gotoTarget) {
-            WWTControl.singleton.gotoRADecZoom(wcsImage.get_centerX() / 15, wcsImage.get_centerY(), 10 * wcsImage.get_scaleY() * height, false, WWTControl.singleton.renderContext.viewCamera.rotation);
+            WWTControl.singleton.gotoRADecZoom(wcsImage.get_centerX() / 15, wcsImage.get_centerY(), 10 * wcsImage.get_scaleY() * height, false, null);
           }
           if (loaded != null) {
             loaded(imagesetLayer);
@@ -23283,9 +23287,9 @@ define('wwtlib', ['ss'], function(ss) {
       var $this = this;
 
       this._imageUrl = url;
-      Wtml.getWtmlFile(url, loadChildFolders, function() {
+      Wtml.getWtmlFile(url, function() {
         $this._fireCollectionLoaded(url);
-      });
+      }, loadChildFolders);
     },
     _imageFileLoaded: function() {
       this._fireCollectionLoaded(this._imageUrl);
@@ -33650,7 +33654,10 @@ define('wwtlib', ['ss'], function(ss) {
 
   function Wtml() {
   }
-  Wtml.getWtmlFile = function(url, loadChildFolders, complete) {
+  Wtml.getWtmlFile = function(url, complete, loadChildFolders) {
+    if (loadChildFolders == null) {
+      loadChildFolders = false;
+    }
     var folder = new Folder();
     folder.set_url(url);
     var folderDownloadAction = new FolderDownloadAction(complete, loadChildFolders);
@@ -34825,7 +34832,7 @@ define('wwtlib', ['ss'], function(ss) {
         this._foregroundCanvas.height = canvas.height;
         this._fgDevice = this._foregroundCanvas.getContext('2d');
       }
-      Wtml.getWtmlFile(URLHelpers.singleton.engineAssetUrl('builtin-image-sets.wtml'), true, ss.bind('_setupComplete', this));
+      Wtml.getWtmlFile(URLHelpers.singleton.engineAssetUrl('builtin-image-sets.wtml'), ss.bind('_setupComplete', this), true);
     },
     _setupComplete: function() {
       WWTControl.scriptInterface._fireReady();
@@ -35221,7 +35228,7 @@ define('wwtlib', ['ss'], function(ss) {
       var $enum1 = ss.enumerate(WWTControl._imageSets);
       while ($enum1.moveNext()) {
         var imageset = $enum1.current;
-        if (imageset.get_url().toLowerCase() === url.toLowerCase()) {
+        if (imageset.get_url() === url) {
           return imageset;
         }
       }
