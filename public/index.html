@@ -4,10 +4,11 @@
 <title>It's the Universe!</title>
 <script> var exports = {};
 </script>
-<script src="functions.js"></script>
+<script type="text/javascript" src="openspace-api.js"></script>
+<script type="text/javascript" src="functions.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="connectToOpenSpace(); startUp();">
 
 <iframe
   id="wwtResearch"
