@@ -5,7 +5,7 @@ var isSynced = false;
 
 function sendMessageToWWT(message) {
     var frame = document.getElementsByTagName("iframe")[0].contentWindow;
-    frame.postMessage(message, "https://web.wwtassets.org");
+    frame.postMessage(message, "http://localhost:8080");
 }
 
 // Helper function to connect to opensapce
@@ -27,7 +27,7 @@ function connectToOpenSpace() {
     }
     if(openspace) {
       // Get ID
-      openspace.skybrowser.sendOutIdsToBrowsers();
+      openspace.skybrowser.startSetup();
     }
   })
   // Connect
@@ -38,7 +38,7 @@ function setId(newId) {
   console.log("Setting id : " + newId)
   id = newId;
   // Ensure that a proper ID is sent to OpenSpace
-  if(id != no_id && openspace) {
+  if(openspace) {
     openspace.skybrowser.initializeBrowser(id);
   }
 }
@@ -46,7 +46,7 @@ function setId(newId) {
 function startUp() {
     // Listen to callback functions from WWT
     window.addEventListener('message', function (event) {
-        if(!isSynced) {
+        if(!isSynced && openspace && id != no_id) {
           openspace.skybrowser.loadImagesToWWT(id);
           isSynced = true;
         }
