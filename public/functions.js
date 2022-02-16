@@ -4,8 +4,12 @@ var id = no_id;
 var isSynced = false;
 
 function sendMessageToWWT(message) {
+  try {
     var frame = document.getElementsByTagName("iframe")[0].contentWindow;
     frame.postMessage(message, "http://localhost:8080");
+  } catch (error) {
+    console.log("Trying to connect to AAS World Wide Telescope" + error);
+  }
 }
 
 // Helper function to connect to opensapce
