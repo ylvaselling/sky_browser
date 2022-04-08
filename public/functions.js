@@ -71,7 +71,10 @@ function startUp() {
         openspace.skybrowser.loadImagesToWWT(id);
         osIsConnected = true;
       }
-    } else if (event.data.type != "wwt_view_state") {
+    } else if (
+      event.data.type != "wwt_view_state" &&
+      event.data.type != "wwt_application_state"
+    ) {
       sendMessageToWWT(event.data);
     }
   });
