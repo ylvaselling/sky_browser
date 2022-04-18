@@ -11,7 +11,7 @@ function setBackgroundColor(stringColor) {
 function sendMessageToWWT(message) {
   try {
     var frame = document.getElementsByTagName("iframe")[0].contentWindow;
-    frame.postMessage(message, "http://localhost:8080");
+    frame.postMessage(message, "http://wwtapp.openspaceproject.com");
   } catch (error) {}
 }
 
