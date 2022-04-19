@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>It's the Universe!</title>
+    <script>
+      var exports = {};
+    </script>
+    <script type="text/javascript" src="openspace-api.js"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body onload="connectToOpenSpace(); startUp();">
+    <div class="container">
+      <iframe
+        id="wwtResearch"
+        name="wwt"
+        src="http://localhost:8080?origin=http://localhost:8000"
+        allow="accelerometer; clipboard-write; gyroscope"
+        allowfullscreen
+        frameborder="0"
+        align="middle"
+      >
+        <p>ERROR: cannot display AAS WorldWide Telescope research app!</p>
+      </iframe>
+    </div>
+  </body>
+</html>
+
+<! --
+ src="http://localhost:8000/node_modules/@wwtelescope/research-app/dist?origin=http://localhost:8000"
+
+30 nov 2021   src="http://localhost:8080/?origin=http://localhost:8000"
+
+3 dec 2021 = https://web.wwtassets.org/research/latest/?origin=http://localhost:8000
+-->

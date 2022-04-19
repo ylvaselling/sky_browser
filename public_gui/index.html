@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
-  <body onload="connectToOpenSpace(); startUp();">
+  <body onload="startUp();">
     <div class="container">
       <iframe
         id="wwtResearch"
         name="wwt"
-        src="http://wwtapp.openspaceproject.com/?origin=http://wwt.openspaceproject.com"
+        src="http://localhost:8080?origin=http://localhost:8000"
         allow="accelerometer; clipboard-write; gyroscope"
         allowfullscreen
         frameborder="0"
