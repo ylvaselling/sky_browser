@@ -7,8 +7,10 @@ function setBackgroundColor(stringColor) {
 function sendMessageToWWT(message) {
   try {
     var frame = document.getElementsByTagName("iframe")[0].contentWindow;
-    frame.postMessage(message, "http://localhost:8080");
-  } catch (error) {}
+    frame.postMessage(message, "http://localhost:8080/");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function startUp() {
@@ -23,7 +25,6 @@ function startUp() {
       event.data.type == "wwt_view_state"
     ) {
       if (!guiIsConnected) {
-        console.log("GUI is connected to WorldWide Telescope");
         // The first time the wwt app responds to messages
         // Notify GUI by passing a message to parent
         guiIsConnected = true;

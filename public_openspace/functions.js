@@ -1,7 +1,7 @@
 var openspace;
 const no_id = "no_id";
 var id = no_id;
-var osIsConnected = false;
+var imagesAreLoaded = false;
 
 function setBackgroundColor(stringColor) {
   document.body.style.backgroundColor = "rgb(" + stringColor + ")";
@@ -10,7 +10,7 @@ function setBackgroundColor(stringColor) {
 function sendMessageToWWT(message) {
   try {
     var frame = document.getElementsByTagName("iframe")[0].contentWindow;
-    frame.postMessage(message, "http://localhost:8080");
+    frame.postMessage(message, "http://localhost:8080/");
   } catch (error) {}
 }
 
@@ -41,7 +41,6 @@ function connectToOpenSpace() {
 }
 
 function setId(newId) {
-  console.log("Setting id : " + newId);
   id = newId;
   // Ensure that a proper ID is sent to OpenSpace
   if (openspace) {
@@ -54,21 +53,16 @@ function startUp() {
   window.addEventListener("message", function(event) {
     if (event.data.event == "load_image_collection_completed") {
       if (openspace) {
-        console.log("Image collection loaded in ScrenSpaceSkyBrowser");
         openspace.skybrowser.loadingImageCollectionComplete(id);
       }
     } else if (
       event.data.type == "wwt_application_state" ||
       event.data.type == "wwt_view_state"
     ) {
-      if (!osIsConnected) {
+      if (!imagesAreLoaded && id != no_id && openspace) {
         // Notify C++ application if this is a browser loaded in the C++ application
-        const idIsSet = id != no_id;
-        if (openspace && idIsSet) {
-          openspace.skybrowser.loadImagesToWWT(id);
-          osIsConnected = true;
-          console.log("Load images to WWT");
-        }
+        openspace.skybrowser.loadImagesToWWT(id);
+        imagesAreLoaded = true;
       }
     }
   });
