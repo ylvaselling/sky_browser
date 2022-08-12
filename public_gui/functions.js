@@ -1,13 +1,21 @@
 var guiIsConnected = false;
 
+function setBorderRadius(radius) {
+  let w = window.innerWidth;
+  let h = window.innerHeight;
+  let radiusPixels = radius * Math.min(w * 0.5, h * 0.5);
+  document.getElementById("container").style.borderRadius = radiusPixels + 'px';
+  document.getElementById("wwtWrapper").style.borderRadius = radiusPixels + 'px';
+}
+
 function setBackgroundColor(stringColor) {
-  document.body.style.backgroundColor = "rgb(" + stringColor + ")";
+  document.getElementById("container").style.borderColor = 'rgb(' + stringColor + ')';
 }
 
 function sendMessageToWWT(message) {
   try {
     var frame = document.getElementsByTagName("iframe")[0].contentWindow;
-    frame.postMessage(message, "http://wwtapp.openspaceproject.com");
+    frame.postMessage(message, "http://localhost:8080/");
   } catch (error) {
     console.log(error);
   }
@@ -18,6 +26,8 @@ function startUp() {
   window.addEventListener("message", function(event) {
     if (event.data.event == "set_background_color") {
       setBackgroundColor(event.data.data);
+    } else if (event.data.event == "set_border_radius") {
+      setBorderRadius(event.data.data);
     } else if (event.data.event == "load_image_collection_completed") {
       parent.postMessage("load_image_collection_completed", "*");
     } else if (

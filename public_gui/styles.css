@@ -1,15 +1,30 @@
 body {
-  background-color: lightgray;
+  background-color: #181818;
   pointer-events: none;
 }
 
 .container {
   position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  border-radius: 0px;
+  border-color: lightgray;
+  border-width: 5px;
+  border-style: solid;
+  background-color: black;
+}
+
+.roundedCorners {
+  position: fixed;
   top: 5px;
   right: 5px;
   bottom: 5px;
   left: 5px;
-  background-color: black;
+  border-radius: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 #wwtResearch {

@@ -3,8 +3,16 @@ const no_id = "no_id";
 var id = no_id;
 var imagesAreLoaded = false;
 
+function setBorderRadius(radius) {
+  let w = window.innerWidth;
+  let h = window.innerHeight;
+  let radiusPixels = radius * Math.min(w * 0.5, h * 0.5);
+  document.getElementById("container").style.borderRadius = radiusPixels + 'px';
+  document.getElementById("wwtWrapper").style.borderRadius = radiusPixels + 'px';
+}
+
 function setBackgroundColor(stringColor) {
-  document.body.style.backgroundColor = "rgb(" + stringColor + ")";
+  document.getElementById("container").style.borderColor = stringColor;
 }
 
 function sendMessageToWWT(message) {

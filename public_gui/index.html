@@ -10,18 +10,20 @@
   </head>
 
   <body onload="startUp();">
-    <div class="container">
-      <iframe
-        id="wwtResearch"
-        name="wwt"
-        src="http://wwtapp.openspaceproject.com/1/?origin=http://wwt.openspaceproject.com/"
-        allow="accelerometer; clipboard-write; gyroscope"
-        allowfullscreen
-        frameborder="0"
-        align="middle"
-      >
-        <p>ERROR: cannot display AAS WorldWide Telescope research app!</p>
-      </iframe>
+    <div id="container" class="container">
+      <div id="wwtWrapper" class="roundedCorners">
+        <iframe
+          id="wwtResearch"
+          name="wwt"
+          src="http://localhost:8080/?origin=http://localhost:8000"
+          allow="accelerometer; clipboard-write; gyroscope"
+          allowfullscreen
+          frameborder="0"
+          align="middle"
+        >
+          <p>ERROR: cannot display AAS WorldWide Telescope research app!</p>
+        </iframe>
+      </div>
     </div>
   </body>
 </html>
