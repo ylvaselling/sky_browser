@@ -1,5 +1,5 @@
 body {
-  background-color: #181818;
+  background-color: transparent;
   pointer-events: none;
 }
 
@@ -10,10 +10,9 @@ body {
   bottom: 0px;
   left: 0px;
   border-radius: 0px;
-  border-color: lightgray;
+  border-color: transparent;
   border-width: 5px;
   border-style: solid;
-  background-color: black;
 }
 
 .roundedCorners {
